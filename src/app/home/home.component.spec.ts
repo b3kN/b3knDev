@@ -3,19 +3,12 @@ import {
   inject,
   async,
   TestBed,
-  ComponentFixture
+  ComponentFixture,
+  getTestBed
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import {
-  BaseRequestOptions,
-  ConnectionBackend,
-  Http
-} from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-/**
- * Load the implementations that should be tested.
- */
 import { AppState } from '../app.service';
 import { HomeComponent } from './home.component';
 import { Title } from './title';
@@ -23,44 +16,28 @@ import { Title } from './title';
 describe(`Home`, () => {
   let comp: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let injector: TestBed;
+  let service: AppState;
+  let httpMock: HttpTestingController;
 
-  /**
-   * async beforeEach.
-   */
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HomeComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [
-        BaseRequestOptions,
-        MockBackend,
-        {
-          provide: Http,
-          useFactory: (backend: ConnectionBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          },
-          deps: [MockBackend, BaseRequestOptions]
-        },
-        AppState,
-        Title,
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [AppState, Title]
     })
-    /**
-     * Compile template and css.
-     */
-    .compileComponents();
+
+      .compileComponents();
+    injector = getTestBed();
+    service = injector.get(AppState);
+    httpMock = injector.get(HttpTestingController);
   }));
 
-  /**
-   * Synchronous beforeEach.
-   */
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     comp = fixture.componentInstance;
 
-    /**
-     * Trigger initial data binding.
-     */
     fixture.detectChanges();
   });
 

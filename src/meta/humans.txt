@@ -5,11 +5,7 @@
 
   <name> -- <role> -- <twitter>
 
-# THANKS
-
-  <name>
-  PatrickJS -- @gdi2290
-  AngularClass -- @AngularClass
+  Nicholas Bekeris -- Creator & Owner -- @b3knDev
 
 # TECHNOLOGY COLOPHON
 

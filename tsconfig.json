@@ -15,9 +15,9 @@
       "dom",
       "es6"
     ],
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@angular/*": ["node_modules/@angular/*"]
+      "@angular/*": [ "node_modules/@angular/*" ]
     },
     "typeRoots": [
       "node_modules/@types"
@@ -26,7 +26,6 @@
       "hammerjs",
       "jasmine",
       "node",
-      "source-map",
       "uglify-js",
       "webpack"
     ]
